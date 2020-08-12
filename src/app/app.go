@@ -347,7 +347,7 @@ func checkDB()  {
         panic(err)
     }
     defer session.Close()
-    userCollection := session.DB ("userdb").C("users")
+    userCollection := session.DB ("heroku_1hbzfgwk").C("users")
 
     query := bson.M {}
 
@@ -378,7 +378,7 @@ func getCollectionTokens(guid string)( []Token){
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("userdb").C("tokens")
+    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
     query := bson.M{"Guid_User": guid}
     tokensCurrentUser := []Token{}
     tokenCollection.Find(query).All(&tokensCurrentUser)
@@ -391,7 +391,7 @@ func getOneUser(guid string) (User) {
         panic(err)
     }
     defer session.Close()
-    userCollection := session.DB ("userdb").C("users")
+    userCollection := session.DB ("heroku_1hbzfgwk").C("users")
     query := bson.M {"guid": guid}
     var user = User{}
     userCollection.Find(query).One(&user)
@@ -405,7 +405,7 @@ func insertNewTokens(guid string, tokens map[string]string)  {
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("userdb").C("tokens")
+    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
 
     token1 := &Token{ID:bson.NewObjectId(), TokensPair:tokens, GUID: guid}
 
@@ -422,7 +422,7 @@ func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("userdb").C("tokens")
+    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
 
 
 
@@ -443,7 +443,7 @@ func deleteTokens(guid string, idTokenInDB bson.ObjectId) (bool)  {
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("userdb").C("tokens")
+    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
 
 
 
