@@ -341,7 +341,8 @@ func checkRefreshToken(refreshToken string)(tokenIsValid bool){
 
     //проверка БД на наличие таблицы пользователей
 func checkDB()  {
-    session, err := mgo.Dial("mongodb://127.0.0.1")
+    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    
     if err != nil {
         panic(err)
     }
@@ -372,7 +373,7 @@ func checkDB()  {
     //получение токенов
 func getCollectionTokens(guid string)( []Token){
 
-        session, err := mgo.Dial("mongodb://127.0.0.1")
+        session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
         if err != nil {
             panic(err)
         }
@@ -387,7 +388,7 @@ func getCollectionTokens(guid string)( []Token){
 }
     //получение пользователя
 func getOneUser(guid string) (User) {
-    session, err := mgo.Dial("mongodb://127.0.0.1")
+    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     if err != nil {
         panic(err)
     }
@@ -401,7 +402,7 @@ func getOneUser(guid string) (User) {
     //добавление пары токенов
 func insertNewTokens(guid string, tokens map[string]string)  {
 
-    session, err := mgo.Dial("mongodb://127.0.0.1")
+    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     if err != nil {
         panic(err)
     }
@@ -418,7 +419,7 @@ func insertNewTokens(guid string, tokens map[string]string)  {
     //обновление пары токенов
 func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[string]string)  {
 
-        session, err := mgo.Dial("mongodb://127.0.0.1")
+        session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
         if err != nil {
             panic(err)
         }
@@ -439,7 +440,7 @@ func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[
     //удаление токенов
 func deleteTokens(guid string, idTokenInDB bson.ObjectId) (bool)  {
 
-    session, err := mgo.Dial("mongodb://127.0.0.1")
+    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     if err != nil {
         panic(err)
     }
