@@ -21,8 +21,7 @@ type User struct{
     Name string `bson:"name"`
     GUID string `bson:"guid"`
     Password string `bson:"password"`
-//    Tokens [] Tokens  `bson.A:"tokens"`
-//    Tokens map [string]string `bson:"tokens"`
+
 }
 
 // MyCustomClaims : поля для токена
@@ -52,8 +51,8 @@ type TokensFromUser struct {
 func main ()  {
     rout := mux.NewRouter()
 
-    http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
-    //rout.Handle("/", http.FileServer(http.Dir("../utils/views/index.html")))
+
+    rout.Handle("/", http.FileServer(http.Dir("../utils/views/index.html")))
 
     rout.HandleFunc("/css/{filename}", cssHandler)
 
@@ -83,14 +82,14 @@ func main ()  {
 func cssHandler(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     filename := vars["filename"]
-    http.ServeFile(w, r, "./css/"+filename)
+    http.ServeFile(w, r, "../utils/css/"+filename)
 }
 
 //Контроллер подгрузки js
 func jsHandler(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     filename := vars["filename"]
-    http.ServeFile(w, r, "/js/"+filename)
+    http.ServeFile(w, r, "../utils/js/"+filename)
 }
 
 // GetTokensHandler : контроллер создания пары токенов
