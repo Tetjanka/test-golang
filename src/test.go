@@ -51,7 +51,7 @@ type TokensFromUser struct {
 func main ()  {
     rout := mux.NewRouter()
 
-    rout.Handle("/", http.FileServer(http.Dir("./views/")))
+    rout.Handle("/", http.FileServer(http.Dir("../views/")))
 
     rout.HandleFunc("/css/{filename}", cssHandler)
 
@@ -77,14 +77,14 @@ func main ()  {
 func cssHandler(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     filename := vars["filename"]
-    http.ServeFile(w, r, "./css/"+filename)
+    http.ServeFile(w, r, "../css/"+filename)
 }
 
 //Контроллер подгрузки js
 func jsHandler(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     filename := vars["filename"]
-    http.ServeFile(w, r, "./js/"+filename)
+    http.ServeFile(w, r, "../js/"+filename)
 }
 
 // GetTokensHandler : контроллер создания пары токенов
