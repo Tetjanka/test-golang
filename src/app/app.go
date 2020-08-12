@@ -341,8 +341,8 @@ func checkRefreshToken(refreshToken string)(tokenIsValid bool){
 
     //проверка БД на наличие таблицы пользователей
 func checkDB()  {
-    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
-    
+    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+
     if err != nil {
         panic(err)
     }
@@ -373,22 +373,20 @@ func checkDB()  {
     //получение токенов
 func getCollectionTokens(guid string)( []Token){
 
-        session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
-        if err != nil {
-            panic(err)
-        }
-        defer session.Close()
-        tokenCollection := session.DB ("userdb").C("tokens")
-        query := bson.M{"Guid_User": guid}
-        tokensCurrentUser := []Token{}
-        tokenCollection.Find(query).All(&tokensCurrentUser)
-    //    fmt.Println("tokenCollection")
-    //    fmt.Printf("%T\n", tokensCurrentUser)
-        return tokensCurrentUser
+    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    if err != nil {
+        panic(err)
+    }
+    defer session.Close()
+    tokenCollection := session.DB ("userdb").C("tokens")
+    query := bson.M{"Guid_User": guid}
+    tokensCurrentUser := []Token{}
+    tokenCollection.Find(query).All(&tokensCurrentUser)
+    return tokensCurrentUser
 }
     //получение пользователя
 func getOneUser(guid string) (User) {
-    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     if err != nil {
         panic(err)
     }
@@ -402,7 +400,7 @@ func getOneUser(guid string) (User) {
     //добавление пары токенов
 func insertNewTokens(guid string, tokens map[string]string)  {
 
-    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     if err != nil {
         panic(err)
     }
@@ -419,19 +417,19 @@ func insertNewTokens(guid string, tokens map[string]string)  {
     //обновление пары токенов
 func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[string]string)  {
 
-        session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
-        if err != nil {
-            panic(err)
-        }
-        defer session.Close()
-        tokenCollection := session.DB ("userdb").C("tokens")
+    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    if err != nil {
+        panic(err)
+    }
+    defer session.Close()
+    tokenCollection := session.DB ("userdb").C("tokens")
 
 
 
-        query := bson.M {"Guid_User": guid, "_id": idTokenInDB}
+    query := bson.M {"Guid_User": guid, "_id": idTokenInDB}
 
-        //tokenCollection.Update(bson.M{"guid": guid}, bson.M{"$push":bson.M{"tokens":tokens}})
-        tokenCollection.Update(query, bson.M{"$set":bson.M{"tokens": newTokenPair}})
+
+    tokenCollection.Update(query, bson.M{"$set":bson.M{"tokens": newTokenPair}})
 
 
 
@@ -440,7 +438,7 @@ func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[
     //удаление токенов
 func deleteTokens(guid string, idTokenInDB bson.ObjectId) (bool)  {
 
-    session, err := mgo.Dial("mongodb://<user1>:<W7XMgiTE#c6_KmL>@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     if err != nil {
         panic(err)
     }
