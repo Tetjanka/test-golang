@@ -52,7 +52,7 @@ type TokensFromUser struct {
 func main ()  {
     rout := mux.NewRouter()
 
-    rout.Handle("/", http.FileServer(http.Dir("../utils/views/")))
+    rout.Handle("/", http.FileServer(http.Dir("../utils/views/index.html")))
 
     rout.HandleFunc("/css/{filename}", cssHandler)
 
