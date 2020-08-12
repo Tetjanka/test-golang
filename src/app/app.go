@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "net/http"
+    "os"
     "time"
     "encoding/base64"
     "github.com/dgrijalva/jwt-go"
@@ -68,8 +69,12 @@ func main ()  {
     checkDB()
 
 
+    port := os.Getenv("PORT")
+    if port == "" {
+        return
+    }
 
-    http.ListenAndServe(":3000", rout)
+    http.ListenAndServe(":"+port, rout)
 }
 
 
