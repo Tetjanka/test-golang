@@ -52,7 +52,7 @@ func main ()  {
     rout := mux.NewRouter()
 
 
-    rout.Handle("/", http.FileServer(http.Dir("../utils/views/index.html")))
+    rout.Handle("/", http.FileServer(http.Dir("../utils/views/")))
 
     rout.HandleFunc("/css/{filename}", cssHandler)
 
@@ -70,9 +70,9 @@ func main ()  {
 
 
     port := os.Getenv("PORT")
-    if port == "" {
-        return
-    }
+        if port == "" {
+            return
+        }
 
     http.ListenAndServe(":"+port, rout)
 }
