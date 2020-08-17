@@ -346,14 +346,14 @@ func checkRefreshToken(refreshToken string)(tokenIsValid bool){
 
     //проверка БД на наличие таблицы пользователей
 func checkDB()  {
-    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    //session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     //session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068-a0.mlab.com:41068, ds141068-a1.mlab.com:41069/heroku_1hbzfgwk?replicaSet=rs-ds141068")
-    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
     defer session.Close()
-    userCollection := session.DB ("heroku_1hbzfgwk").C("users")
+    userCollection := session.DB ("heroku_0g8rdn33").C("users")
 
     query := bson.M {}
 
@@ -379,12 +379,12 @@ func checkDB()  {
     //получение токенов
 func getCollectionTokens(guid string)( []Token){
 
-    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
+    tokenCollection := session.DB ("heroku_0g8rdn33").C("tokens")
     query := bson.M{"Guid_User": guid}
     tokensCurrentUser := []Token{}
     tokenCollection.Find(query).All(&tokensCurrentUser)
@@ -392,12 +392,12 @@ func getCollectionTokens(guid string)( []Token){
 }
     //получение пользователя
 func getOneUser(guid string) (User) {
-    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
     defer session.Close()
-    userCollection := session.DB ("heroku_1hbzfgwk").C("users")
+    userCollection := session.DB ("heroku_0g8rdn33").C("users")
     query := bson.M {"guid": guid}
     var user = User{}
     userCollection.Find(query).One(&user)
@@ -406,12 +406,12 @@ func getOneUser(guid string) (User) {
     //добавление пары токенов
 func insertNewTokens(guid string, tokens map[string]string)  {
 
-    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
+    tokenCollection := session.DB ("heroku_0g8rdn33").C("tokens")
 
     token1 := &Token{ID:bson.NewObjectId(), TokensPair:tokens, GUID: guid}
 
@@ -423,12 +423,12 @@ func insertNewTokens(guid string, tokens map[string]string)  {
     //обновление пары токенов
 func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[string]string)  {
 
-    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
+    tokenCollection := session.DB ("heroku_0g8rdn33").C("tokens")
 
 
 
@@ -444,12 +444,12 @@ func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[
     //удаление токенов
 func deleteTokens(guid string, idTokenInDB bson.ObjectId) (bool)  {
 
-    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
     defer session.Close()
-    tokenCollection := session.DB ("heroku_1hbzfgwk").C("tokens")
+    tokenCollection := session.DB ("heroku_0g8rdn33").C("tokens")
 
 
 
