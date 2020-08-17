@@ -348,8 +348,8 @@ func checkRefreshToken(refreshToken string)(tokenIsValid bool){
 func checkDB()  {
     //session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
     //session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068-a0.mlab.com:41068, ds141068-a1.mlab.com:41069/heroku_1hbzfgwk?replicaSet=rs-ds141068")
-//    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
-    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
+    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
 
     if err != nil {
         panic(err)
@@ -380,8 +380,8 @@ func checkDB()  {
 }
     //получение токенов
 func getCollectionTokens(guid string)( []Token){
-    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
-//    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
+    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
@@ -394,8 +394,8 @@ func getCollectionTokens(guid string)( []Token){
 }
     //получение пользователя
 func getOneUser(guid string) (User) {
-    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
-    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
+    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
@@ -408,8 +408,8 @@ func getOneUser(guid string) (User) {
 }
     //добавление пары токенов
 func insertNewTokens(guid string, tokens map[string]string)  {
-    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
-    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
+    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
@@ -425,8 +425,8 @@ func insertNewTokens(guid string, tokens map[string]string)  {
 }
     //обновление пары токенов
 func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[string]string)  {
-    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
-    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
+    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
@@ -446,8 +446,8 @@ func refreshTokensPair(guid string, idTokenInDB bson.ObjectId, newTokenPair map[
 }
     //удаление токенов
 func deleteTokens(guid string, idTokenInDB bson.ObjectId) (bool)  {
-    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
-    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
+    //session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502_a0.mlab.com:43502, ds243502_a1.mlab.com:43503/heroku_0g8rdn33?replicaSet=rs-ds243502")
+    session, err := mgo.Dial("mongodb://heroku_0g8rdn33:vtf590ps7pv7e9q1ffk56pq2h6@ds243502.mlab.com:43502/heroku_0g8rdn33")
     if err != nil {
         panic(err)
     }
