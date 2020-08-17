@@ -346,7 +346,8 @@ func checkRefreshToken(refreshToken string)(tokenIsValid bool){
 
     //проверка БД на наличие таблицы пользователей
 func checkDB()  {
-    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    //session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068.mlab.com:41068/heroku_1hbzfgwk")
+    session, err := mgo.Dial("mongodb://user1:W7XMgiTE#c6_KmL@ds141068-a0.mlab.com:41068, ds141068-a1.mlab.com:41069/heroku_1hbzfgwk?replicaSet=rs-ds141068")
 
     if err != nil {
         panic(err)
